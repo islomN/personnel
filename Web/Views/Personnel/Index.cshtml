@@ -1,0 +1,58 @@
+﻿@using Domain.Models
+@{
+    ViewData["Title"] = "Home Page";
+    var items = ViewData["Items"] as IEnumerable<EmployeeModel>;
+    var id = 0;
+}
+
+<div class="text-center">
+    <h3 id="loading" style="display: none">Loading...</h3>
+    <form id="import" action="/Personnel/Import" method="post" enctype="multipart/form-data">
+        <div class="col-3">
+            <label for="formFile" class="form-label">Import personnel file</label>
+            <input class="form-control" id="formFile" type="file" name="file">
+        </div>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>№</th>
+                <th>Payroll Number</th>
+                <th>Firstname</th>
+                <th>Surname</th>
+                <th>Date of Birth</th>
+                <th>Telephone</th>
+                <th>Mobile</th>
+                <th>Address</th>
+                <th>Address 2</th>
+                <th>Post Code</th>
+                <th>Email</th>
+                <th>Start Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in items)
+        {
+            {
+                id++;
+            }
+            
+            <tr>
+                <td>@id</td>
+                <td>@item.PayrollNumber</td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.BirthDay</td>
+                <td>@item.Telephone</td>
+                <td>@item.Mobile</td>
+                <td>@item.Address</td>
+                <td>@item.AddressTwo</td>
+                <td>@item.PostCode</td>
+                <td>@item.Email</td>
+                <td>@item.StartDate</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
